@@ -24,9 +24,14 @@ button, input, select, textarea {
 }
 
 .logo{
-    display: block;
-    margin: 0 auto;
-    width: 150px;
+    position: absolute;       /* Flutua por cima de tudo na tela */
+    top: 50px;                /* Define a distância exata e fixa do topo da tela do navegador */
+    left: 0;
+    width: 100%;  
+    
+    display: flex;
+    justify-content: center;  /* Garante o alinhamento no meio exato da tela */
+    z-index: 20;          
 }
 
 .login-pai {
@@ -67,7 +72,7 @@ button, input, select, textarea {
     justify-content: center; /* Centraliza o conteúdo horizontalmente */
     z-index: 10;
     text-align: center; /* Centraliza o texto dentro do card */
-    color: #fff; /* Define a cor do texto para branco */
+    color: #A9B8C7; /* Define a cor do texto para branco */
     font-size: 8px; /* Define o tamanho da fonte */
 
 }
@@ -79,23 +84,58 @@ button, input, select, textarea {
     color: #fff; 
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 47px; 
-    height: 54px; 
     cursor: pointer; 
-    font-weight: 700;
     font-size: 24px; 
+    white-space: nowrap;      
     
-    /* 💡 O SEGREDO PARA A LARGURA PROPORCIONAL: */
-    width: max-content;       /* Força o botão a ter o tamanho exato do conteúdo */
-    white-space: nowrap;      /* Impede que o texto quebre em duas linhas */
+    /* 🔒 TRAVA A ALTURA FIXA */
+    height: 54px; 
     
-    /* Ajuste o segundo número (20px) para aumentar ou diminuir a sobra nas laterais */
-    padding: 0 32px;          /* 0 em cima/baixo (porque o height fixa a altura) e 32px nos lados */
+    /* ↔️ LARGURA DE ACORDO COM O TEXTO + FOLGA NAS LATERAIS */
+    width: max-content;       
+    padding-left: 32px;       /* Espaço interno na esquerda */
+    padding-right: 32px;      /* Espaço interno na direita */
     
-    /* Alinha o texto perfeitamente no centro vertical e horizontal do botão */
+    /* ZERA O PADDING EM CIMA E EM BAIXO PARA NÃO SUBIR A ALTURA */
+    padding-top: 0;
+    padding-bottom: 0;
+
+    /* 🎯 CENTRALIZA O TEXTO PERFEITAMENTE DENTRO DOS 54PX */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+.button-right{
+    background: #00AEEF20; 
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    color: #fff; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 47px; 
+    cursor: pointer; 
+    font-size: 24px; 
+    white-space: nowrap;      
+    
+    /* 🔒 TRAVA A ALTURA FIXA */
+    height: 54px; 
+    
+    /* ↔️ LARGURA DE ACORDO COM O TEXTO + FOLGA NAS LATERAIS */
+    width: max-content;       
+    padding-left: 32px;       /* Espaço interno na esquerda */
+    padding-right: 32px;      /* Espaço interno na direita */
+    
+    /* ZERA O PADDING EM CIMA E EM BAIXO PARA NÃO SUBIR A ALTURA */
+    padding-top: 0;
+    padding-bottom: 0;
+
+    /* 🎯 CENTRALIZA O TEXTO PERFEITAMENTE DENTRO DOS 54PX */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    align-self: center;
 }
 
 .login-input{
@@ -107,10 +147,96 @@ button, input, select, textarea {
     border-radius: 47px; /* Arredonda os cantos do botão */
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 10px 20px; /* Espaçamento interno do botão */
-    font-size: 5px; /* Tamanho da fonte do botão */
-    height: 54px; /* Altura do botão */
-    width: 393px; /* Largura do botão */
+    font-size: 16px; /* Tamanho da fonte do botão */
+    height: 30px; /* Altura do botão */
+    width: 350px; /* Largura do botão */
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    margin-top: -27px; /* Espaçamento superior entre os botões */
+    margin-bottom: 30px; /* Espaçamento inferior entre os botões */
 }
 
-.login-right{}
+.login-right{
+    color: #fff; /* Cor do texto */
+    font-size: 12px; /* Tamanho da fonte */
+    flex-grow: 1;            /* Preenche automaticamente toda a área que sobrou na direita */
+    height: 100%;            /* Ocupa a altura total do card principal */
+    
+    /* 2. EMPURRA O CONTEÚDO PARA FORA DA ÁREA SOBREPOSTA */
+    /* Como o seu card esquerdo tem 267px, adicionamos uma margem um pouco maior para dar um respiro */
+    margin-left: 267px;      /* Cria um "muro" invisível exatamente onde termina o card da esquerda */
+    
+    /* 3. ESPAÇAMENTO INTERNO (Margens de segurança do conteúdo) */
+    padding: 40px;           /* Evita que os inputs e textos encostem nas bordas externas do card */
+    box-sizing: border-box;  /* Garante que o padding não quebre o tamanho do layout */
+
+    /* 4. ALINHAMENTO DO FORMULÁRIO (Inputs e títulos um embaixo do outro) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o formulário verticalmente na tela */
+    align-items: flex-start; /* Alinha os textos e inputs à esquerda da área livre (padrão de login) */
+    
+    /* Distância entre cada elemento (Título -> Input -> Botão) */
+    gap: 20px;               /* Ajuste esse valor de acordo com o espaçamento desejado entre os elementos do formulário */
+}
+
+.login-span {
+    color: #A9B8C7; /* Cor do texto */
+    margin-top: 10px; /* Espaçamento superior */
+    font-size: 16px;                 /* Tamanho da fonte (ajuste com o Figma) */
+    font-weight: 500;                /* Espessura do texto */
+    text-decoration: none;           /* Garante que não tem nenhum sublinhado padrão */
+    cursor: pointer;                 /* Mostra a mãozinha de clique ao passar o mouse */
+    transition: color 0.2s ease;   
+    text-align: center;                /* Centraliza o texto */
+    align-self: center;                /* Centraliza o texto */
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffff;
+    margin-top: -25px;
+}
+
+.login-title{
+    text-align: center;
+    align-self: center;  
+}
+
+.codigo-input{
+    background: #00AEEF20; 
+    width: 56px;
+    height: 54px;
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+    color: #fff; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 47px; 
+    cursor: pointer; 
+    font-size: 24px; 
+    white-space: nowrap;      
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    align-self: center;
+    text-align: center;
+    margin: 6px;
+}
+
+.codigo-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 50px;
+}
